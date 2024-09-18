@@ -1,2 +1,80 @@
 # ManageVirtualizationFeatures.ps1
-**ManageVirtualizationFeatures.ps1** is a PowerShell script for managing virtualization features on Windows 11. It enables/disables Hyper-V, Virtual Machine Platform, Windows Hypervisor Platform, Containers, WSL2, and Microsoft Defender Application Guard. Auto-elevates for admin privileges and provides an interactive menu.
+
+## Description
+
+**ManageVirtualizationFeatures.ps1** is a PowerShell script designed to simplify the management of virtualization features on Windows 11. This script allows users to enable or disable various virtualization features, such as Hyper-V, Virtual Machine Platform, Windows Hypervisor Platform, Containers, Windows Subsystem for Linux (WSL2), and Microsoft Defender Application Guard. The script also includes auto-elevation, ensuring it runs with administrative privileges.
+
+## Features
+
+- **Enable or disable individual virtualization features**
+- **Enable or disable all virtualization features at once**
+- **Check the current status of each virtualization feature**
+- **Auto-elevation to run with administrative privileges**
+
+## Download and Installation
+
+1. **Download the script**:
+   - Click on the `Code` button at the top of the repository.
+   - Select `Download ZIP` to download the repository as a ZIP file.
+   - Extract the ZIP file to a desired location on your computer.
+
+2. **Save the script**:
+   - Alternatively, you can copy the script content and save it as `ManageVirtualizationFeatures.ps1` using a text editor like Notepad or Visual Studio Code.
+
+## Usage
+
+1. **Run the script**:
+   - Double-click the `ManageVirtualizationFeatures.ps1` file or run it from a non-admin PowerShell window:
+     ```powershell
+     .\ManageVirtualizationFeatures.ps1
+     ```
+
+2. **Follow the prompts**:
+   - The script will check the status of each virtualization feature and present a multiple-choice question.
+   - Select the feature you want to enable or disable by entering the corresponding number or letter.
+
+## Examples
+
+### Example 1: Enable Hyper-V
+
+1. Run the script:
+   ```powershell
+   .\ManageVirtualizationFeatures.ps1
+   ```
+2. Select option `1` to enable Hyper-V.
+
+### Example 2: Disable Virtual Machine Platform
+
+1. Run the script:
+   ```powershell
+   .\ManageVirtualizationFeatures.ps1
+   ```
+2. Select option `8` to disable Virtual Machine Platform.
+
+### Example 3: Enable all features
+
+1. Run the script:
+   ```powershell
+   .\ManageVirtualizationFeatures.ps1
+   ```
+2. Select option `A` to enable all virtualization features.
+
+### Example 4: Disable all features
+
+1. Run the script:
+   ```powershell
+   .\ManageVirtualizationFeatures.ps1
+   ```
+2. Select option `D` to disable all virtualization features.
+
+## Contributing
+
+Contributions are welcome! If you have any suggestions or improvements, please create a pull request or open an issue.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+Feel free to customize this description to better fit your needs! If you have any questions or need further assistance, let me know! 😊
