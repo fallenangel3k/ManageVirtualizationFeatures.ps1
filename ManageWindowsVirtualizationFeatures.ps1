@@ -55,7 +55,8 @@ $features = @(
     "HypervisorPlatform",
     "Containers",
     "Microsoft-Windows-Subsystem-Linux",
-    "Windows-Defender-ApplicationGuard"
+    "Windows-Defender-ApplicationGuard",
+    "Containers-DisposableClientVM"  # Windows Sandbox
 )
 
 foreach ($feature in $features) {
@@ -71,19 +72,21 @@ Write-Output "3. Enable Windows Hypervisor Platform"
 Write-Output "4. Enable Containers"
 Write-Output "5. Enable Windows Subsystem for Linux (WSL2)"
 Write-Output "6. Enable Microsoft Defender Application Guard"
+Write-Output "7. Enable Windows Sandbox"
 Write-Output ""
 Write-Output "-= DEACTIVATION =-"
-Write-Output "7. Disable Hyper-V"
-Write-Output "8. Disable Virtual Machine Platform"
-Write-Output "9. Disable Windows Hypervisor Platform"
-Write-Output "10. Disable Containers"
-Write-Output "11. Disable Windows Subsystem for Linux (WSL2)"
-Write-Output "12. Disable Microsoft Defender Application Guard"
+Write-Output "8. Disable Hyper-V"
+Write-Output "9. Disable Virtual Machine Platform"
+Write-Output "10. Disable Windows Hypervisor Platform"
+Write-Output "11. Disable Containers"
+Write-Output "12. Disable Windows Subsystem for Linux (WSL2)"
+Write-Output "13. Disable Microsoft Defender Application Guard"
+Write-Output "14. Disable Windows Sandbox"
 Write-Output ""
 Write-Output "A. Enable all features"
 Write-Output "D. Disable all features"
 Write-Output ""
-$choice = Read-Host "Enter your choice (1-12, A, or D)"
+$choice = Read-Host "Enter your choice (1-14, A, or D)"
 
 # Enable or disable selected features based on user input
 switch ($choice) {
@@ -93,12 +96,14 @@ switch ($choice) {
     "4" { Enable-Feature "Containers" }
     "5" { wsl --install }
     "6" { Enable-Feature "Windows-Defender-ApplicationGuard" }
-    "7" { Disable-Feature "Microsoft-Hyper-V-All" }
-    "8" { Disable-Feature "VirtualMachinePlatform" }
-    "9" { Disable-Feature "HypervisorPlatform" }
-    "10" { Disable-Feature "Containers" }
-    "11" { Disable-Feature "Microsoft-Windows-Subsystem-Linux" }
-    "12" { Disable-Feature "Windows-Defender-ApplicationGuard" }
+    "7" { Enable-Feature "Containers-DisposableClientVM" }  # Windows Sandbox
+    "8" { Disable-Feature "Microsoft-Hyper-V-All" }
+    "9" { Disable-Feature "VirtualMachinePlatform" }
+    "10" { Disable-Feature "HypervisorPlatform" }
+    "11" { Disable-Feature "Containers" }
+    "12" { Disable-Feature "Microsoft-Windows-Subsystem-Linux" }
+    "13" { Disable-Feature "Windows-Defender-ApplicationGuard" }
+    "14" { Disable-Feature "Containers-DisposableClientVM" }  # Windows Sandbox
     "A" {
         foreach ($feature in $features) {
             if ($feature -ne "Microsoft-Windows-Subsystem-Linux") {
@@ -116,5 +121,13 @@ switch ($choice) {
     default { Write-Output "Invalid choice. No features were enabled or disabled." }
 }
 
-# Restart the computer to apply changes
-Restart-Computer
+# Prompt for reboot
+Write-Output ""
+$rebootChoice = Read-Host "Do you want to reboot now (Y), in 5 minutes (5), or not at all (N)?"
+
+switch ($rebootChoice.ToUpper()) {
+    "Y" { Restart-Computer }
+    "5" { Shutdown.exe /r /t 300 }
+    "N" { Write-Output "Please remember to reboot your computer later to apply the changes." }
+    default { Write-Output "Invalid choice. No reboot scheduled." }
+}
